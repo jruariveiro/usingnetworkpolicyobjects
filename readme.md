@@ -10,20 +10,20 @@ As of writing of this article, this feature is in "Technology Preview" in OpenSh
 
 ### Understanding Sample Application	
 
-To look at a practical example that show cases Network Policy Objects, we'll use a sample application that is made up of a bunch of microservices from this git repository [https://github.com/VeerMuchandi/microservices-on-openshift](https://github.com/VeerMuchandi/microservices-on-openshift). 
+To look at a practical example that show cases Network Policy Objects, we'll use a sample application that is made up of a bunch of microservices from this git repository [https://github.com/newgoliath/microservices-on-openshift](https://github.com/newgoliath/microservices-on-openshift). 
 
 Deploying these microservices will provide you a case to understand ***how Network Policy Objects are useful***. 
 
 This application has 4 microservices written using different technologies just to show case how polyglot microservices talk to each other. Some of these microservices have application logic and a database. All the components run as containers on OpenShift.	
 
-1. [Front End Service](https://github.com/VeerMuchandi/microservices-on-openshift/tree/master/php-ui) that provides UI to registers users, allows you to login, and displays the tweets for all the registered users, written in PHP.
+1. [Front End Service](https://github.com/newgoliath/microservices-on-openshift/tree/master/php-ui) that provides UI to registers users, allows you to login, and displays the tweets for all the registered users, written in PHP.
 
-2. 	[Email service](https://github.com/VeerMuchandi/microservices-on-openshift/tree/master/python-email-api) that can send emails to a registered user, written in Python that saves data in MySQLDB		
+2. 	[Email service](https://github.com/newgoliath/microservices-on-openshift/tree/master/python-email-api) that can send emails to a registered user, written in Python that saves data in MySQLDB		
 
-3. [Twitter service](https://github.com/VeerMuchandi/microservices-on-openshift/tree/master/java-twitter-feed-api) that pulls tweets for a registered user, written in Java running on Tomcat. This service is called by the Front End HTML directly.	
-4. [User Registration Backend](https://github.com/VeerMuchandi/microservices-on-openshift/tree/master/nodejs-users-api) that registers the users, saves the registered user in a MongoDB and written in Node.Js. This service is called by the Front End HTML and does the job of user registration. One the user is registered it calls the Email Service to send an email confirmation.
+3. [Twitter service](https://github.com/newgoliath/microservices-on-openshift/tree/master/java-twitter-feed-api) that pulls tweets for a registered user, written in Java running on Tomcat. This service is called by the Front End HTML directly.	
+4. [User Registration Backend](https://github.com/newgoliath/microservices-on-openshift/tree/master/nodejs-users-api) that registers the users, saves the registered user in a MongoDB and written in Node.Js. This service is called by the Front End HTML and does the job of user registration. One the user is registered it calls the Email Service to send an email confirmation.
 
-This is all explained in this [application's git repository](https://github.com/VeerMuchandi/microservices-on-openshift). For our network policy use case, we will deploy these microservices into three different projects
+This is all explained in this [application's git repository](https://github.com/newgoliath/microservices-on-openshift). For our network policy use case, we will deploy these microservices into three different projects
 
 1. `msclient` project hosts the front-end service
 2. `msservices` project hosts the user-registration backend service and the twitter service
@@ -43,7 +43,7 @@ The deployment model for these microservices and the expected interations (in or
 **Step 1** Clone the repository to your local machine 
 
 ```
-git clone https://github.com/VeerMuchandi/microservices-on-openshift
+git clone https://github.com/newgoliath/microservices-on-openshift
 ```
 and change to the `microservices-on-openshift/installscripts` folder
 
@@ -62,7 +62,7 @@ oc new-project msinfra
 
 **Step 3** Setting environment variables
 
-Edit [1.setVariable.sh](https://github.com/VeerMuchandi/microservices-on-openshift/blob/master/installscripts/1.setVariable.sh) script to set the following values:
+Edit [1.setVariable.sh](https://github.com/newgoliath/microservices-on-openshift/blob/master/installscripts/1.setVariable.sh) script to set the following values:
 
 * `OSE_DOMAIN` to your openshift domain name.
 
@@ -227,7 +227,7 @@ The server didn't respond in time.
 
 Let's add more policies now.
 
-**Note** You can clone this git repository to download all these policy files. [https://github.com/VeerMuchandi/usingnetworkpolicyobjects](https://github.com/VeerMuchandi/usingnetworkpolicyobjects)
+**Note** You can clone this git repository to download all these policy files. [https://github.com/newgoliath/usingnetworkpolicyobjects](https://github.com/newgoliath/usingnetworkpolicyobjects)
 
 * Completely deny all traffic to `msclient` project
 
